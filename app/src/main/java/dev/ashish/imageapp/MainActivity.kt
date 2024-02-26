@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dev.ashish.imagecompressor.ImageCompressor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnTakePhoto: Button
@@ -53,7 +56,9 @@ class MainActivity : AppCompatActivity() {
                             // Handle content URI - get the real file path
                             val filePath = getRealPathFromURI(imageUri!!)
                             if (filePath != null) {
-                                ImageCompressor.compressImage(filePath,40)
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    ImageCompressor.compressImage(filePath,40)
+                                }
                             }
                     }
                 }
