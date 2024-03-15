@@ -18,7 +18,7 @@ dependencies {
 	}
 ```
 # Let's compress the image size!
-         CoroutineScope(Dispatchers.Main).launch {
+         CoroutineScope(Dispatchers.IO).launch {
                                     ImageCompressor.compressImage(imagepath : String, imageQuality: int)
                                 }
 ```
